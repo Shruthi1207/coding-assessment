@@ -6,6 +6,9 @@ import { environment } from '@app/environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TodosModule } from './todos/todos.module';
+import { FormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app-routing.module';
+import { StorageService } from '@app/todos/services/storage.service';
 
 @NgModule({
   declarations: [
@@ -13,6 +16,8 @@ import { TodosModule } from './todos/todos.module';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    AppRoutingModule,
     StoreModule.forRoot([], {
       runtimeChecks: {
         strictStateImmutability: true,
@@ -24,7 +29,7 @@ import { TodosModule } from './todos/todos.module';
     }) : [],
     TodosModule,
   ],
-  providers: [],
+  providers: [StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

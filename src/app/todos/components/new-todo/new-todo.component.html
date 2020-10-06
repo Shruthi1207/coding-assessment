@@ -1,0 +1,11 @@
+<form enctype="application/x-www-form-urlencoded" role="form" novalidate>
+  <input
+    class="new-todo"
+    name="todo"
+    [(ngModel)]="todo"
+    (blur)="add()"
+    (keydown.enter)="add()"
+    placeholder="What needs to be done"
+    autofocus
+  />
+</form>

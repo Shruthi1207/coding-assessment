@@ -30,6 +30,55 @@ export function todosReducer(state: ITodosState, action: Action) {
         todos: updatedTodos,
       };
     }),
+    on(TodoActions.updateTodo, (existingState, { index, text }) => {
+      const updatedTodos = [...existingState.todos];
+
+      return {
+        ...existingState,
+        todos: updatedTodos.map((item, idx) => {
+          if (idx === index) {
+            return {
+              ...item,
+              text
+            }
+          }
+
+          return item;
+
+        }),
+      };
+    }),
+    on(TodoActions.toggleCompleted, (existingState, { index }) => {
+      const updatedTodos = [...existingState.todos];
+
+      return {
+        ...existingState,
+        todos: updatedTodos.map((item, idx) => {
+          if (idx === index) {
+            return {
+              ...item,
+              completed: !item.completed
+            }
+          }
+
+          return item;
+
+        }),
+      };
+    }),
+    on(TodoActions.toggleAllCompleted, (existingState) => {
+      const updatedTodos = [...existingState.todos];
+
+      return {
+        ...existingState,
+        todos: updatedTodos.map((item) => {
+          return {
+            ...item,
+            completed: !item.completed
+          }
+        }),
+      };
+    }),
     on(TodoActions.changeFilterMode, (existingState, { mode }) => ({
       ...existingState,
       filterMode: mode,
@@ -37,6 +86,10 @@ export function todosReducer(state: ITodosState, action: Action) {
     on(TodoActions.clearCompleted, (existingState) => ({
       ...existingState,
       todos: [...existingState.todos.filter(todo => !todo.completed)],
+    })),
+    on(TodoActions.initTodos, (existingState, { todos }) => ({
+      ...existingState,
+      todos,
     })),
   )(state, action);
 }

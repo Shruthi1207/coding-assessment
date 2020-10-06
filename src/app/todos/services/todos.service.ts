@@ -12,11 +12,13 @@ import * as todoSelectors from '../state/todo.selectors';
 export class TodosService {
 
   allTodos$: Observable<ITodo[]>;
+  filterMode$: Observable<FILTER_MODES>
 
   constructor(
     private store: Store<ITodosState>,
   ) {
     this.allTodos$ = this.store.select(todoSelectors.allTodos);
+    this.filterMode$ = this.store.select(todoSelectors.filterMode);
   }
 
   addTodo(text: string): void {
@@ -45,5 +47,9 @@ export class TodosService {
 
   clearCompleted(): void {
     this.store.dispatch(TodoActions.clearCompleted());
+  }
+
+  initTodos(todos: ITodo[]): void {
+    this.store.dispatch(TodoActions.initTodos({ todos }));
   }
 }

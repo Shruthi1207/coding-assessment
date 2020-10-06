@@ -1,0 +1,25 @@
+<footer class="footer">
+  <span class="todo-count" *ngIf="todosCount > 0"
+    >{{ activeCount }} item left</span
+  >
+  <ul class="filters">
+    <li>
+      <a (click)="changeMode('')" [class.selected]="mode === 'All'">All</a>
+    </li>
+    <li>
+      <a (click)="changeMode('active')" [class.selected]="mode === 'Active'"
+        >Active</a
+      >
+    </li>
+    <li>
+      <a
+        (click)="changeMode('completed')"
+        [class.selected]="mode === 'Completed'"
+        >Completed</a
+      >
+    </li>
+  </ul>
+  <button class="clear-completed" (click)="clearCompleted()">
+    Clear completed
+  </button>
+</footer>

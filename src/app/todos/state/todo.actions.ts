@@ -1,5 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { FILTER_MODES } from '../constants/filter-modes';
+import { ITodo } from '@app/todos/interfaces';
 
 export const addTodo = createAction(
   '[Todos] Add Todo',
@@ -38,3 +39,10 @@ export const changeFilterMode = createAction(
 export const clearCompleted = createAction(
   '[Todos] Clear Completed',
 );
+
+export const initTodos = createAction(
+  '[Todos] Init Todos',
+  props<{ todos: ITodo[] }>(),
+);
+
+

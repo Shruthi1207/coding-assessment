@@ -1,9 +1,10 @@
 <ul class="todo-list">
-  <li>
-    <div class="view">
-      <input class="toggle" type="checkbox" />
-      <label></label>
-      <button class="destroy"></button>
-    </div>
+  <ng-container
+    *ngFor="let todo of todos | filterMode: mode; let index = index"
+  >
+    <app-todo-item [todo]="todo" [index]="index"></app-todo-item>
+  </ng-container>
+  <li *ngIf="showNoTodosMessage(mode)" class="no-matches">
+    No Todos Present
   </li>
 </ul>

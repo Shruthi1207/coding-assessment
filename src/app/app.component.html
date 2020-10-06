@@ -1,29 +1,14 @@
 <main class="todoapp">
   <header class="header">
     <h1>todos</h1>
-    <form enctype="application/x-www-form-urlencoded" role="form" novalidate>
-      <input class="new-todo" placeholder="What needs to be done" autofocus>
-    </form>
+    <app-new-todo></app-new-todo>
   </header>
   <section class="main">
     <app-complete-all></app-complete-all>
-    <app-todos-list></app-todos-list>
+    <!-- Routing happens for different filter modes-->
+    <router-outlet></router-outlet>
   </section>
-  <footer class="footer">
-    <span class="todo-count"></span>
-    <ul class="filters">
-      <li>
-        <a href="#" class="selected">All</a>
-      </li>
-      <li>
-        <a href="#">Active</a>
-      </li>
-      <li>
-        <a href="#" >Completed</a>
-      </li>
-    </ul>
-    <button class="clear-completed">Clear completed</button>
-  </footer>
+  <app-footer></app-footer>
 </main>
 <footer class="info">
   <p>Double-click to edit a todo</p>
